@@ -1,0 +1,7 @@
+[theme]
+base="dark"
+primaryColor="#00b56a" # TradingView Green for buttons
+backgroundColor="#131722" # Exact TradingView background color
+secondaryBackgroundColor="#1e222d" # Slight lighter shade for cards
+textColor="#d1d4dc" # Soothing greyish white text
+font="sans serif"
