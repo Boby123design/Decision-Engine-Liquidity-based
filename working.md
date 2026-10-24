@@ -23,7 +23,7 @@ The terminal is designed to support the trade-review process. It does not make a
 
 ```mermaid
 flowchart TD
-    A[Launch the Model_7 batch file] --> B[Open the local Streamlit terminal]
+    A[Launch the Model_7 .bat file] --> B[Open the local Streamlit terminal]
     B --> C[Capture a snapshot of the live asset chart]
     C --> D[Select setup quality and trade direction]
     D --> E[Click Analyze Probability]
