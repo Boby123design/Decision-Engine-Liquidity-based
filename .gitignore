@@ -1,0 +1,18 @@
+# Credentials
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Private model and trading data
+forex_model.pth
+*.xlsx
+live_cleaned_dataset.csv
+live_dataset_images/
+historical_dataset.csv
+historical_5000_images/
