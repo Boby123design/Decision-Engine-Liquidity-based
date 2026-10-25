@@ -8,11 +8,14 @@
 __pycache__/
 *.py[cod]
 .venv/
+train_model.py
 
 # Private model and trading data
 forex_model.pth
 *.xlsx
+
 live_cleaned_dataset.csv
 live_dataset_images/
 historical_dataset.csv
 historical_5000_images/
+Abondend/
