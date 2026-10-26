@@ -9,7 +9,7 @@
 ## 1. System Requirements & Dependencies
 
 ### Hardware & OS Requirements
-- **Operating System:** Windows 10 or Windows 11 (64-bit) — required to run the native Windows batch launchers (`run_model7.bat` and `run_databot.bat`).
+- **Operating System:** Windows 10 or Windows 11 (64-bit) — required to run the native Windows batch launchers (`run_model7.bat`).
 - **Processor & Memory:** Multi-core CPU with at least 8 GB RAM. A CUDA-compatible NVIDIA GPU is optional for local inference and recommended for model retraining.
 - **Display Setup:** Active monitor displaying the charting or trading platform for automated screen capture.
 
