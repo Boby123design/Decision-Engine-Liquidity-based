@@ -1,116 +1,126 @@
-# Model_7 — Live Dataset Results
+# LiquidityVision AI — Experimental Results & Evaluation
 
-## 1. Executive Summary
+## 1. Experiment Overview
 
-This report summarizes the **201 trade records** in `live_cleaned_dataset.csv`, collected from the Model_7 workflow and logged by the user after trades were taken.
-
-| Metric | Result |
-|---|---:|
-| Total logged trades | **201** |
-| TP outcomes | 53 (**26.37%**) |
-| SL outcomes | 94 (**46.77%**) |
-| CTC outcomes | 54 (**26.87%**) |
-| Best setups | 73 (**36.32%** of records) |
-| Good setups | 109 (**54.23%** of records) |
-| Blind setups | 19 (**9.45%** of records) |
-| Buy trades | 84 (**41.79%** of records) |
-| Sell trades | 117 (**58.21%** of records) |
-
-**Overall observation:** SL is the most frequently recorded outcome in this dataset. These are outcome frequencies—not a measure of Model_7's prediction accuracy or profitability.
-
-## 2. Actual Outcome Distribution
-
-| Recorded outcome | Number of trades | Share of all trades |
-|---|---:|---:|
-| TP | 53 | 26.37% |
-| SL | 94 | 46.77% |
-| CTC | 54 | 26.87% |
-| **Total** | **201** | **100.00%** |
-
-TP, SL, and CTC are shown exactly as they are recorded in the CSV. The file does not define the precise meaning or exit rules for CTC, so this report does not assume a particular interpretation.
-
-## 3. Results by Setup Quality
-
-Percentages in this table are calculated **within each setup category**, not across the entire dataset.
-
-| Setup quality | Trades | TP | TP share | SL | SL share | CTC | CTC share |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Best | 73 | 26 | 35.62% | 29 | 39.73% | 18 | 24.66% |
-| Good | 109 | 22 | 20.18% | 56 | 51.38% | 31 | 28.44% |
-| Blind | 19 | 5 | 26.32% | 9 | 47.37% | 5 | 26.32% |
-
-### Observations
-
-- **Best setups had the highest observed TP share:** 26 of 73 trades (35.62%).
-- **Good setups had the highest observed SL share:** 56 of 109 trades (51.38%).
-- Blind setups contain only 19 records, so their percentages are based on a comparatively small sample.
-
-These are descriptive comparisons from the logged trades. They do not establish that setup quality caused the outcomes or that the same pattern will continue in future trades.
-
-## 4. Results by Trade Direction
-
-Percentages are calculated within each direction.
-
-| Direction | Trades | TP | TP share | SL | SL share | CTC | CTC share |
-|---|---:|---:|---:|---:|---:|---:|---:|
-| Buy | 84 | 25 | 29.76% | 33 | 39.29% | 26 | 30.95% |
-| Sell | 117 | 28 | 23.93% | 61 | 52.14% | 28 | 23.93% |
-
-### Observations
-
-- Buy trades had a higher observed TP share than sell trades in this dataset: **29.76% vs. 23.93%**.
-- Sell trades had a higher observed SL share: **52.14% vs. 39.29%**.
-- More sell trades were logged than buy trades (117 vs. 84).
-
-This comparison does not prove that buy trades are inherently better. Market conditions, asset mix, trade selection, and other factors are not recorded in the CSV and could affect the results.
-
-## 5. Dataset Quality Checks
-
-The supplied CSV was checked for basic completeness and category consistency.
-
-| Check | Result |
-|---|---|
-| Number of rows | 201 |
-| Columns present | `Image_Path`, `Trade_Type`, `Result`, `Type` |
-| Missing values in these columns | 0 |
-| Duplicate image paths | 0 |
-| Recognized setup labels | `best`, `good`, `blind` |
-| Recognized outcome labels | `tp`, `sl`, `ctc` |
-| Recognized direction labels | `buy`, `sell` |
-
-All 201 rows have a non-empty image path, setup label, outcome label, and direction label. However, the image paths are absolute Windows paths (for example, paths rooted under `C:\Models\Model_7\...`). They may not resolve on another computer unless the files are placed at the matching location or the paths are converted to project-relative paths.
-
-## 6. What These Results Tell Us—and What They Do Not
-
-This file is useful for describing the actual outcomes users logged after interacting with Model_7. It gives a first view of how recorded outcomes vary across setup labels and trade direction.
-
-However, the CSV contains only four fields. It does **not** contain the model's predicted TP/SL/CTC probabilities, its AI verdict (such as SKIP), timestamps in a standardized field, asset/symbol, entry and exit prices, position size, transaction costs, or realized profit and loss.
-
-As a result, the dataset alone cannot establish:
-
-- Model prediction accuracy or probability calibration.
-- Whether the model's SKIP verdicts were correct, because skipped opportunities are not represented here.
-- Win rate under a clearly defined trading-result convention, especially while CTC is undefined.
-- Net profitability, expectancy, drawdown, or risk-adjusted performance.
-- Whether any observed difference is statistically reliable or will generalize to unseen trades.
-
-**Important:** TP share is not the same as model accuracy, and outcome counts alone do not show whether the strategy made money. Profitability depends on the trade rules, reward-to-risk ratio, CTC definition, costs, and the actual monetary result of each trade.
-
-## 7. Recommended Logging Improvements
-
-To evaluate Model_7 rigorously, future records should link each model analysis to the corresponding executed trade and include:
-
-1. A unique trade/analysis ID and timestamp.
-2. Asset or symbol and relevant timeframe.
-3. Setup quality and trade direction.
-4. Predicted `P(TP)`, `P(SL)`, and `P(CTC)` captured **before** the trade outcome is known.
-5. AI verdict, including `SKIP` or trade-permitted decisions.
-6. Whether the user actually took the trade, so model recommendations can be evaluated separately from user selection.
-7. A clearly defined CTC label and consistent outcome rules.
-8. Entry, stop-loss, take-profit, exit price, position size, fees/slippage, and realized P&L where available.
-
-With these fields, future reports can compare predictions with actual outcomes, evaluate probability calibration and decision quality, and measure trading performance using a clearly defined methodology.
+The objective of this evaluation is to analyze the **201 logged live trade records** in `live_cleaned_dataset.csv` collected through the **LiquidityVision AI** workflow, quantify empirical trade outcome distributions (`TP`, `SL`, `CTC`) with 1:3 Risk Reward across setup quality and trade direction, and assess dataset readiness for supervised model evaluation and retraining.
 
 ---
 
-**Source:** `live_cleaned_dataset.csv` supplied for this analysis. Counts and percentages above are calculated directly from its 201 rows. Percentages are rounded to two decimal places; small rounding differences may occur when displayed values are added together.
+## 2. Dataset Details
+
+- **Data Source:** `live_cleaned_dataset.csv` paired with captured chart snapshots stored under `live_dataset_images/`.
+- **Dataset Size:** 201 verified post-trade records (0 missing values, 0 duplicate image paths).
+- **Schema & Fields:** 4 columns — `Image_Path`, `Trade_Type` (`best`, `good`, `blind`), `Result` (`tp`, `sl`, `ctc`), and `Type` (`buy`, `sell`).
+- **Date Range:** Post-trade live logging records; standardized execution timestamps are not recorded in the current CSV schema.
+- **Split Methodology:** This dataset serves as an out-of-sample live operational log (`N = 201`). Before merging these records into `train_model.py` for weight updates, the dataset must be partitioned using a chronological walk-forward split or stratified train/validation/test split (e.g., 70% / 15% / 15%) after converting absolute Windows paths (`C:\Models\Model_7\...`) to relative repository paths.
+
+| Dataset Check | Verified Result |
+|---|---|
+| **Total Logged Trades** | 201 |
+| **Columns Present** | `Image_Path`, `Trade_Type`, `Result`, `Type` |
+| **Missing / Null Values** | 0 |
+| **Duplicate Image Paths** | 0 |
+| **Setup Quality Distribution** | `Good`: 109 (54.23%), `Best`: 73 (36.32%), `Blind`: 19 (9.45%) |
+| **Direction Distribution** | `Sell`: 117 (58.21%), `Buy`: 84 (41.79%) |
+
+---
+
+## 3. Model / Version
+
+- **Model Name:** LiquidityVision AI (Multi-Modal Scalping Terminal, formerly `Model_7`)
+- **Architecture Module:** `model_architecture.py` (Multi-modal vision + categorical setup network)
+- **Evaluated Checkpoint:** `forex_model.pth`
+- **Application Runtime:** `app_model7.py` running locally via Streamlit on `http://localhost:8507`
+
+---
+
+## 4. Baseline Comparison
+
+To evaluate how user-classified setup quality and direction perform relative to the unconditional dataset average, subgroups are compared against the **Unconditional Dataset Baseline** (`201 trades`) and the **Blind Setup Baseline** (`19 trades`).
+
+| Cohort / Baseline | Trades | TP Count | TP Share | SL Count | SL Share | CTC Count | CTC Share | TP Lift vs. Overall Baseline |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Overall Dataset Baseline** | **201** | **53** | **26.37%** | **94** | **46.77%** | **54** | **26.87%** | **0.00%** |
+| **Setup: Best** | 73 | 26 | 35.62% | 29 | 39.73% | 18 | 24.66% | +9.25% |
+| **Setup: Good** | 109 | 22 | 20.18% | 56 | 51.38% | 31 | 28.44% | -6.19% |
+| **Setup: Blind (Baseline)** | 19 | 5 | 26.32% | 9 | 47.37% | 5 | 26.32% | -0.05% |
+| **Direction: Buy** | 84 | 25 | 29.76% | 33 | 39.29% | 26 | 30.95% | +3.39% |
+| **Direction: Sell** | 117 | 28 | 23.93% | 61 | 52.14% | 28 | 23.93% | -2.44% |
+
+- **Best vs. Overall Baseline:** `Best` setups achieved a **35.62% TP share** (+9.25 percentage points above the 26.37% overall baseline) and reduced `SL` frequency to **39.73%** (vs. 46.77% overall).
+- **Buy vs. Sell Comparison:** `Buy` setups achieved a higher `TP` share (**29.76%** vs. **23.93%**) and a lower `SL` share (**39.29%** vs. **52.14%**) than `Sell` setups.
+
+---
+
+## 5. Evaluation Metrics
+
+### Empirical Class Frequencies (Ground-Truth Labels)
+
+| Recorded Outcome | Number of Trades | Empirical Share / Class Prior |
+|---|---:|---:|
+| **TP (Take-Profit)** | 53 | 26.37% |
+| **SL (Stop-Loss)** | 94 | 46.77% |
+| **CTC (Cost-to-Cost)** | 54 | 26.87% |
+| **Total** | **201** | **100.00%** |
+
+
+## 6. Visual Results
+
+### Outcome Breakdown by Category
+
+```mermaid
+pie title Actual Outcome Distribution (201 Logged Trades)
+    "SL (94 trades)" : 94
+    "CTC (54 trades)" : 54
+    "TP (53 trades)" : 53
+```
+
+### Terminal & Dataset Logging Screenshots
+
+- **AI Verdict & Probability Inference Output:**
+  ![Example AI verdict and outcome probabilities](screenshots/04-ai-verdict.png)
+- **Post-Trade Outcome Selection (`TP`, `SL`, `CTC`):**
+  ![Selecting the completed trade outcome before saving](screenshots/05-log-trade-outcome.png)
+- **Live Dataset Persistence Confirmation (`live_cleaned_dataset.csv`):**
+  ![Confirmation that the trade result was saved](screenshots/06-dataset-saved.png)
+
+---
+
+## 7. Trading Metrics
+
+- **Observed Hit Rates:**
+  - **Unconditional TP Rate:** 26.37% (53 / 201)
+  - **Active Resolution Win Rate (excluding CTC scratches, `TP / (TP + SL)`):** 36.05% (53 / 147)
+  - **Best Setup Active Win Rate (`TP / (TP + SL)`):** 47.27% (26 / 55)
+- **Expectancy Formula ($E$):**
+  Assuming `CTC` represents a breakeven ($0R$) scratch and normalize risk per trade to $1R$:
+  $$E = (P_{\text{TP}} \times R_{\text{TP}}) - (P_{\text{SL}} \times 1R) - C_{\text{trade}}$$
+- **Breakeven Reward-to-Risk ($R_{\text{TP}}$) Requirement (Before Costs):**
+  - **All Logged Trades (`TP`: 26.37%, `SL`: 46.77%):** Requires a minimum realized reward-to-risk ratio of **$1.77R$** ($46.77 / 26.37$) to reach breakeven expectancy.
+  - **Best Setups Only (`TP`: 35.62%, `SL`: 39.73%):** Requires a minimum realized reward-to-risk ratio of **$1.12R$** ($39.73 / 35.62$) to reach breakeven expectancy.
+- **Drawdown, Costs & Realized P&L Constraints:** Exact monetary expectancy, maximum drawdown, and net Sharpe/profit factor cannot be calculated from `live_cleaned_dataset.csv` alone because entry/exit prices, stop distance, position size, commissions, and slippage ($C_{\text{trade}}$) are not logged in the 4-column file.
+
+---
+
+## 8. Reproducibility & Conclusion
+
+### Reproducibility Commands & Configuration
+
+1. **Launch Live Evaluation Terminal:**
+```bash
+run_model7.bat
+```
+2. **Verify Dataset Integrity & Distribution Counts:**
+```bash
+python -c "import pandas as pd; df = pd.read_csv('live_cleaned_dataset.csv'); print(df.info()); print(df['Result'].value_counts(normalize=True)); print(pd.crosstab(df['Trade_Type'], df['Result'], normalize='index'))"
+```
+3. **Retrain Model Checkpoint (`forex_model.pth`):**
+```bash
+python train_model.py
+```
+4. **Recommended Training Seeds:** Set deterministic seeds (`SEED = 42`) across `random`, `numpy`, and `torch` (`torch.manual_seed(42)`) inside `train_model.py` and `dataset_loader.py` prior to retraining.
+
+### Conclusion
+- **What the Results Support:** The 201-row `live_cleaned_dataset.csv` is structurally clean (zero missing or duplicate entries) and shows that **Best** setups achieved the highest empirical `TP` rate (**35.62%**) and lowest `SL` rate (**39.73%**), while **Buy** trades outperformed **Sell** trades in observed `TP` share (**29.76%** vs. **23.93%**).
+- **What the Results Do Not Support:** Outcome counts alone do not measure model prediction accuracy, calibration, `SKIP` filter effectiveness, or net monetary profitability.
+- **Next Logging Upgrade:** Append pre-trade predicted probabilities (`P(TP)`, `P(SL)`, `P(CTC)`), the `AI Verdict` (`SKIP` vs. `TAKE`), timestamps, symbol, and realized `R`-multiple/P&L to every logged row to enable full confusion-matrix and drawdown evaluation in future iterations.
