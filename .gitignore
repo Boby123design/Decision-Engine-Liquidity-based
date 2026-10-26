@@ -14,8 +14,15 @@ train_model.py
 forex_model.pth
 *.xlsx
 
-live_cleaned_dataset.csv
-live_dataset_images/
+
+
 historical_dataset.csv
 historical_5000_images/
 Abondend/
+dataset_images/
+data_bot.py
+data_extractor.py
+data_loader.py
+historical_dataset.csv
+model_architecture.py
+model_7 dataset.xlsx
