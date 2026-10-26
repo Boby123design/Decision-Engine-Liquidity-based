@@ -1,12 +1,12 @@
-# Model_7 — Multi-Modal Scalping Terminal
+# VisionScalp AI
 
-A Windows-based Streamlit research prototype that analyzes trading-chart snapshots with a multi-modal PyTorch model to estimate **TP / SL / CTC** probabilities and log actual trade outcomes for post-trade analysis.
+An AI-powered scalping terminal that fuses chart snapshots and trade setup data to predict Take Profit (TP), Stop Loss (SL), and Cost-to-Cost (CTC) probabilities.
 
 ---
 
 ## Screenshots / Demo
 
-![Model_7 terminal](screenshots/02-terminal-home.png)
+![VisionScalp AI](screenshots/02-terminal-home.png)
 *Main terminal interface for chart capture and setup selection.*
 
 ![AI verdict](screenshots/04-ai-verdict.png)
