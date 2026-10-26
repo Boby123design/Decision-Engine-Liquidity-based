@@ -1,4 +1,4 @@
-# VisionScalp AI
+# VisionScalp AI or (Model_7: Multi-Model Scalping Termina)
 
 An AI-powered scalping terminal that fuses chart snapshots and trade setup data to predict Take Profit (TP), Stop Loss (SL), and Cost-to-Cost (CTC) probabilities.
 
