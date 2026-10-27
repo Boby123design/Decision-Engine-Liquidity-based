@@ -1,4 +1,4 @@
-# VisionScalp AI or (Model_7: Multi-Model Scalping Termina)
+# LiquidityVision-AI or (Model_7: Multi-Model Scalping Terminal)
 
 An AI-powered scalping terminal that fuses chart snapshots and trade setup data to predict Take Profit (TP), Stop Loss (SL), and Cost-to-Cost (CTC) probabilities.
 
@@ -6,7 +6,7 @@ An AI-powered scalping terminal that fuses chart snapshots and trade setup data 
 
 ## Screenshots / Demo
 
-![VisionScalp AI](screenshots/02-terminal-home.png)
+![LiquidityVision-AI](screenshots/02-terminal-home.png)
 *Main terminal interface for chart capture and setup selection.*
 
 ![AI verdict](screenshots/04-ai-verdict.png)
