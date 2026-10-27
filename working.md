@@ -115,7 +115,7 @@ Open the target asset chart in your trading platform, then click **Auto-Capture 
 ![Captured chart displayed in terminal](screenshots/03-chart-captured.png)
 
 ### Step 3: Select Setup Details and Analyse
-Under **Setup Details**, choose the **Setup Quality** (e.g., `Blind`) and **Direction** (e.g., `Buy`), then click **Analyze Probability**.
+Under **Setup Details**, choose the **Setup Quality** : It is the opportunity based like if first trade become profitable is is blind, if second trade become profitable it is good and if third trade become profitable it is best trade this is the nomenclature of blind/good/best setup quality(e.g., `Blind`) and **Direction** (e.g., `Buy`), then click **Analyze Probability**.
 
 ### Step 4: Review the AI Verdict
 Inspect the **AI Verdict** banner and the estimated **TP**, **CTC**, and **SL** probabilities. Follow the decision rules before taking any live trade.
